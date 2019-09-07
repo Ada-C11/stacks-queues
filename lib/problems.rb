@@ -14,14 +14,13 @@ def balanced(string)
     if complements.values.include?(c)
       stack.push(c)
     else
-      temp = stack.pop
-      if temp != complements[c]
+      if stack.pop != complements[c]
         return false
       end
     end
   end
-  return true if stack.empty?
-  return false
+  return false if !stack.empty?
+  return true
 end
 
 def evaluate_postfix(postfix_expression)

@@ -25,7 +25,6 @@ def balanced(string)
 end
 
 def evaluate_postfix(postfix_expression)
-  puts 4 / 3
   operators = ["+", "-", "/", "*"]
 
   stack = Stack.new

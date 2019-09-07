@@ -42,7 +42,7 @@ class Queue
   end
 
   def empty?
-    return @store[0] == nil && @store[1] == nil
+    return @store[@front].nil?
   end
 
   def to_s

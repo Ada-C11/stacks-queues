@@ -1,12 +1,23 @@
 class Queue
+  QUEUE_SIZE = 20
 
   def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+    @store = Array.new(QUEUE_SIZE)
+    @front = @rear = -1 #-1 because it is not index in array, bc front and rear float around we dont know there will be any particular value
+    #use -1 to indicate the queue is empty
   end
 
   def enqueue(element)
-    raise NotImplementedError, "Not yet implemented"
+    if @front == -1 # queue is empty
+      @front = 0
+      @rear = 0
+      @store[@rear] = element
+    elsif @front == (@rear + 1) % 5 # queue is full
+      raise Error, "Q full"
+    else # queue not empty
+      @rear += 1
+      @store[@rear] = element
+    end
   end
 
   def dequeue
@@ -26,6 +37,6 @@ class Queue
   end
 
   def to_s
-    return @store.to_s
+    return @store[@front..@rear].to_s
   end
 end

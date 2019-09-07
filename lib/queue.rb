@@ -22,23 +22,37 @@ class Queue
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    removed = @store[@front]
+    @store[@front] = nil
+
+    if (@front + 1) == @rear
+      @front = @rear = -1
+    else
+      @front = (@front + 1) % QUEUE_SIZE
+    end
+
+    return removed
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return @store[@front]
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    filled_spots = @store.select { |val| val != nil }
+    return filled_spots.length
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    if @front == -1
+      return true
+    else
+      return false
+    end
   end
 
   def to_s
-    adjusted_store = @store.select {|val| val != nil}
+    adjusted_store = @store.select { |val| val != nil }
 
     return adjusted_store.to_s
   end

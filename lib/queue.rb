@@ -34,7 +34,24 @@ class Queue
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return nil if @store.empty?
+
+    first_element = self.dequeue
+    temp_array = [first_element]
+
+    until self.empty?
+      temp_element = self.dequeue
+      temp_array << temp_element
+    end
+
+    i = 0
+
+    until i == temp_array.length
+      self.enqueue(temp_array[i])
+      i += 1
+    end
+
+    return first_element
   end
 
   def size
@@ -42,6 +59,7 @@ class Queue
   end
 
   def empty?
+    @front = -1 if @store[@front].nil?
     return @store[@front].nil?
   end
 

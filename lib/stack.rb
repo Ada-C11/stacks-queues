@@ -14,7 +14,7 @@ class Stack
   end
 
   def empty?
-    return true if @head == nil
+    return true if @store.empty?
     return false
   end
 

@@ -11,29 +11,28 @@ describe "Test Queue Implementation" do
   end
 
   it "adds something to an empty Queue" do
-    skip
     q = Queue.new
     q.enqueue(10)
-    q.to_s.must_equal "[10]"
+    q.to_string.must_equal "[10]"
   end
 
   it "adds multiple somethings to a Queue" do
-    skip
+    # skip
     q = Queue.new
     q.enqueue(10)
     q.enqueue(20)
     q.enqueue(30)
-    q.to_s.must_equal "[10, 20, 30]"
+    q.to_string.must_equal "[10, 20, 30]"
   end
 
   it "starts the size of a Queue at 0" do
-    skip
+    # skip
     q = Queue.new
     q.empty?.must_equal true
   end
 
   it "removes something from the Queue" do
-    skip
+    # skip
     q = Queue.new
     q.enqueue(5)
     removed = q.dequeue
@@ -42,18 +41,18 @@ describe "Test Queue Implementation" do
   end
 
   it "removes the right something (LIFO)" do
-    skip
+    # skip
     q = Queue.new
     q.enqueue(5)
     q.enqueue(3)
     q.enqueue(7)
     removed = q.dequeue
     removed.must_equal 5
-    q.to_s.must_equal "[3, 7]"
+    q.to_string.must_equal "[3, 7]"
   end
 
   it "properly adjusts the size with enqueueing and dequeueing" do
-    skip
+    # skip
     q = Queue.new
     q.empty?.must_equal true
     q.enqueue(-1)
@@ -65,7 +64,7 @@ describe "Test Queue Implementation" do
   end
 
   it "returns the front element in the Queue" do
-    skip
+    # skip
     q = Queue.new
     q.enqueue(40)
     q.enqueue(22)

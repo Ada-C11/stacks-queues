@@ -1,19 +1,24 @@
+require_relative './linked_list' 
+
 class Stack
   def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+    @store = LinkedList.new()
   end
 
-  def push(element)
-    raise NotImplementedError, "Not yet implemented"
+  def push(element) # add to end
+    @store.add_last(element)
   end
 
-  def pop
-    raise NotImplementedError, "Not yet implemented"
+  def pop # remove from end
+    @store.remove_last if !self.empty?
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    @store.empty?
+  end
+
+  def peak_last 
+    return @store.get_last
   end
 
   def to_s

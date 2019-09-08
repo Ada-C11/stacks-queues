@@ -1,7 +1,7 @@
 class Stack
   def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+    @store = LinkedList.new
+    @top = nil
   end
 
   def push(element)

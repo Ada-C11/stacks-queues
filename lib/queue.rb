@@ -26,19 +26,41 @@ class Queue
   end
 
   def dequeue
-    return element = @store.pop
+    if @front == -1
+      return
+
+    elsif @front == @rear
+      temp_node = @store[@front]
+      @front = -1
+      @rear = -1
+      return temp_node
+
+    else
+      temp_node = @store[@front]
+      @store[@front] = nil
+      @front = (@front + 1) % QUEUE_SIZE
+      return temp_node
+    end
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return @store[@front]
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    if @front > @rear
+      return QUEUE_SIZE - @front + @rear
+    else
+      return @rear - @front
+    end
   end
 
   def empty?
-    return @store[0] == nil && @store[1] == nil
+   if @store[@front].nil?
+      return true
+   else
+    return false
+   end
   end
 
   def to_s

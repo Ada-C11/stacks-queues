@@ -1,32 +1,28 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require_relative '../lib/problems'
+require "minitest/autorun"
+require "minitest/reporters"
+require_relative "../lib/problems"
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe "Test wave 3 problems" do
   describe "balanced" do
     it "Given balanced strings it should return true" do
-      skip
-      expect(balanced('(({}))')).must_equal true
+      expect(balanced("(({}))")).must_equal true
     end
 
     it "regards an empty string as balanced" do
-      skip
-      expect(balanced('')).must_equal true
+      expect(balanced("")).must_equal true
     end
 
     it "will return false for an unbalanced set of parens" do
-      skip
-      expect(balanced('(()')).must_equal false
-      expect(balanced('(()}')).must_equal false
-      expect(balanced('([]]')).must_equal false
+      expect(balanced("(()")).must_equal false
+      expect(balanced("(()}")).must_equal false
+      expect(balanced("([]]")).must_equal false
     end
 
     it "also works for {} and []" do
-      skip
-      expect(balanced('[]')).must_equal true
-      expect(balanced('{}')).must_equal true
+      expect(balanced("[]")).must_equal true
+      expect(balanced("{}")).must_equal true
     end
   end
 

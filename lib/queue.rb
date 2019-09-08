@@ -12,7 +12,7 @@ class Queue
       @front = 0
       @rear = 0
       @store[@rear] = element
-    elsif @front == (@rear + 1) % 5 # queue is full
+    elsif @front == (@rear + 1) % @store.length # queue is full
       raise Error, "Q full"
     else # queue not empty
       @rear += 1
@@ -21,7 +21,21 @@ class Queue
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    if @front == -1
+      raise Error, "Q is empty"
+    elsif @front == @rear
+      removed_value = @store[@front]
+      @store[@front] = nil
+      @front = @rear = -1
+      return removed_value
+    else
+      new_front = (@front + 1) % @store.length
+      removed_value1 = @store[@front]
+
+      @store[@front] = nil
+      @front = new_front
+      return removed_value1
+    end
   end
 
   def front
@@ -33,7 +47,11 @@ class Queue
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    if @front == -1
+      return true
+    else
+      return false
+    end
   end
 
   def to_s

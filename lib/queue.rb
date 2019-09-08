@@ -1,7 +1,6 @@
 QUEUE_SIZE = 20
 
 class Queue
-
   def initialize
     @store = Array.new(QUEUE_SIZE)
     @front = @rear = -1
@@ -12,7 +11,7 @@ class Queue
       @rear = 1
       @front = 0
       @store[@front] = element
-    elsif @front == @rear
+    elsif @front == @rear && !self.empty?
       raise Error, "Q IS FULL"
     else #not empty
       new_rear = (@rear + 1) % QUEUE_SIZE
@@ -22,25 +21,44 @@ class Queue
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    if @front == -1
+      return nil
+    end
+    index_to_remove = @front
+    value_to_remove = @store[index_to_remove]
+    @store[index_to_remove] = nil
+    @front += 1
+    # @store.delete_at(index_to_remove)
+    # @front = index_to_remove + 1
+    return value_to_remove
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return store[@front]
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    size = 0
+    return 0 if self.empty?
+    
+    @store.each do |i|
+      if i != nil 
+        size += 1
+      end
+    end
+
+    return size
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return true if self.to_s == "[]"
+    return false
   end
 
   def to_s
     values = []
     @store.each do |i|
-      if i != nil 
+      if i != nil
         values << i
       end
     end

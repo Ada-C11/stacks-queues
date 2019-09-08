@@ -23,11 +23,11 @@ class Queue
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    @store.get_first
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    @store.length
   end
 
   def empty?

@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require_relative '../lib/queue'
-require 'minitest/skip_dsl'
+# require 'minitest/_dsl'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe "Test Queue Implementation" do
@@ -24,14 +24,12 @@ describe "Test Queue Implementation" do
     q.to_s.must_equal "[10, 20, 30]"
   end
 
-  xit "starts the size of a Queue at 0" do
-    skip
+  it "starts the size of a Queue at 0" do
     q = Queue.new
     q.empty?.must_equal true
   end
 
-  xit "removes something from the Queue" do
-    skip
+  it "removes something from the Queue" do
     q = Queue.new
     q.enqueue(5)
     removed = q.dequeue
@@ -39,8 +37,7 @@ describe "Test Queue Implementation" do
     q.empty?.must_equal true
   end
 
-  xit "removes the right something (LIFO)" do
-    skip
+  it "removes the right something (LIFO)" do
     q = Queue.new
     q.enqueue(5)
     q.enqueue(3)
@@ -50,8 +47,8 @@ describe "Test Queue Implementation" do
     q.to_s.must_equal "[3, 7]"
   end
 
-  xit "properly adjusts the size with enqueueing and dequeueing" do
-    skip
+  it "properly adjusts the size with enqueueing and dequeueing" do
+
     q = Queue.new
     q.empty?.must_equal true
     q.enqueue(-1)
@@ -62,8 +59,8 @@ describe "Test Queue Implementation" do
     q.empty?.must_equal true
   end
 
-  xit "returns the front element in the Queue" do
-    skip
+  it "returns the front element in the Queue" do
+
     q = Queue.new
     q.enqueue(40)
     q.enqueue(22)

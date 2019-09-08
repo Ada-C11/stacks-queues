@@ -19,26 +19,36 @@ class Queue
     else
       @store[@rear] = element
       @rear = (@rear + 1) % QUEUE_SIZE
-      puts "adding #{element}"
     end
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    remove_item = @store[@front]
+
+    raise Error, "The queue is empty." if empty?
+
+    @store[@front] = nil
+    @front = (@front + 1) % QUEUE_SIZE
+
+    return remove_item
   end
 
-  def front
-    raise NotImplementedError, "Not yet implemented"
-  end
+  # def front
+  #   raise NotImplementedError, "Not yet implemented"
+  # end
 
-  def size
-    raise NotImplementedError, "Not yet implemented"
-  end
+  # def size
+  #   raise NotImplementedError, "Not yet implemented"
+  # end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return (@front == nil && @rear == nil) || (@front == @rear)
   end
 
+
+# def to_s
+#   @store.to_s
+# end
 
   def to_s
     array_as_string = "["
@@ -48,7 +58,7 @@ class Queue
 
     i = @front + 1
     until i == @rear
-      array_as_string = array_as_string + ", #{@store[@front + i]}"
+      array_as_string = array_as_string + ", #{@store[i]}"
       i += 1
     end
 

@@ -1,3 +1,5 @@
+require_relative "linked_list"
+
 class Queue
   QUEUE_SIZE = 20
 
@@ -10,7 +12,7 @@ class Queue
     if @front == -1
       @rear = 1
       @front = 0
-      @store[@rear] = element
+      @store[@front] = element
     elsif @front == @rear
       raise Error, "Queue full"
     else
@@ -20,22 +22,37 @@ class Queue
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    if @front == -1
+      raise ArgumentError, "Queue empty"
+    else
+      front = @store[@front]
+      @front = (@front + 1) % QUEUE_SIZE
+      if @front == @rear
+        @front = @rear = -1
+      end
+      return front
+    end
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return @front
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    return @store.size
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    @front == -1 ? true : false
   end
 
   def to_s
-    return @store.to_s
+    array = []
+    current = @front
+    while current != @rear
+      array << @store[current]
+      current = (current + 1) % QUEUE_SIZE
+    end
+    return array.to_s
   end
 end

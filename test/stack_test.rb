@@ -5,6 +5,7 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe "Test Stack Implementation" do
   it "creates a Stack" do
+    skip
     s = Stack.new
     s.class.must_equal Stack
   end

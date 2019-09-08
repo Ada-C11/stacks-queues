@@ -11,14 +11,12 @@ describe "Test Queue Implementation" do
   end
 
   it "adds something to an empty Queue" do
-    skip
     q = Queue.new
     q.enqueue(10)
     q.to_s.must_equal "[10]"
   end
 
   it "adds multiple somethings to a Queue" do
-    skip
     q = Queue.new
     q.enqueue(10)
     q.enqueue(20)

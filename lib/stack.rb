@@ -24,7 +24,7 @@ class Stack
   end
 
   def empty?
-    return @store.get_last.nil?
+    return @store.empty?
   end
 
   def to_s

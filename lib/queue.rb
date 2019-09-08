@@ -12,8 +12,9 @@ class Queue
       @front = 0
       @rear = 1
       @store[@front] = element
-    elsif @front == @rear
-      raise Error, "Q FULL"
+    elsif (@rear + 1) % QUEUE_SIZE == @front
+      # raise ArgumentError, "Q FULL"
+      puts "DAMNIT"
     else
       new_rear = (@rear + 1) % QUEUE_SIZE # if we reach the end of the array it will wrap around to the beginning again...
       @store[@rear] = element
@@ -24,20 +25,29 @@ class Queue
   end
 
   def dequeue
-    if @store[@front]
+    if @front == -1
+      return
+    elsif @front == @rear
+      temp = @store[@front]
+      @front = -1
+      @rear = -1
+      return temp
+    else
       temp = @store[@front]
       @store[@front] = nil
-      @front += 1 % QUEUE_SIZE
+      @front = (@front + 1) % QUEUE_SIZE
       return temp
     end
+
+    @front -= 1 if @store[@front].nil? && @store == @rear
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return @store[@front]
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    return @front > @rear ? (QUEUE_SIZE - @front + @rear) : (@rear - @front)
   end
 
   def empty?

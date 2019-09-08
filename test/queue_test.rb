@@ -66,4 +66,23 @@ describe "Test Queue Implementation" do
     q.dequeue
     expect(q.dequeue).must_equal 22
   end
+
+  it "an empty queue returns a size of 0" do
+    q = Queue.new
+    expect(q.size).must_equal 0
+  end
+
+  it "returns the correct size for a queue" do
+    q = Queue.new
+    19.times { |num| q.enqueue(num) }
+
+    q.size.must_equal 19
+    q.dequeue
+    q.dequeue
+    q.size.must_equal 17
+    17.times { q.dequeue }
+    q.size.must_equal 0
+    q.enqueue(1)
+    q.size.must_equal 1
+  end
 end

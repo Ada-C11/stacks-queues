@@ -28,8 +28,6 @@ class Queue
     value_to_remove = @store[index_to_remove]
     @store[index_to_remove] = nil
     @front += 1
-    # @store.delete_at(index_to_remove)
-    # @front = index_to_remove + 1
     return value_to_remove
   end
 

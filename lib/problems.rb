@@ -1,5 +1,4 @@
 require_relative "./stack.rb"
-require_relative "./queue.rb"
 require "pry"
 
 def balanced(string)
@@ -33,5 +32,21 @@ def balanced(string)
 end
 
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  stack = Stack.new
+
+  operators = ["+", "-", "*", "/"]
+
+  postfix_expression.each_char do |char|
+    if !operators.include?(char)
+      stack.push(char)
+    else
+      value_two = stack.pop.to_i
+      value_one = stack.pop.to_i
+      operator = char
+      result = value_one.send(operator, value_two)
+      stack.push(result)
+    end
+  end
+
+  return stack.pop
 end

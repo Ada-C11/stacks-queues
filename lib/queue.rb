@@ -13,8 +13,7 @@ class Queue
       @rear = 1
       @store[@front] = element
     elsif (@rear + 1) % QUEUE_SIZE == @front
-      # raise ArgumentError, "Q FULL"
-      puts "DAMNIT"
+      raise ArgumentError, "Q FULL"
     else
       new_rear = (@rear + 1) % QUEUE_SIZE # if we reach the end of the array it will wrap around to the beginning again...
       @store[@rear] = element

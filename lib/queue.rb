@@ -1,31 +1,53 @@
+require 'pry'
+
 class Queue
 
   def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+    @limit = 4 # item limit for queue
+    @size = @limit + 1 # size of the internal array
+    @internal_array = Array.new(@size)
+    @front = 0
+    @back = 0
   end
 
   def enqueue(element)
-    raise NotImplementedError, "Not yet implemented"
+    return "Stack is full" if @front == (@back + 1) % @internal_array.length
+
+    @internal_array[@back] = element
+
+    @back = (@back + 1) % @internal_array.size
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    return nil if self.empty?
+
+    temp = @internal_array[@front]
+    @front = (@front + 1) % @size
+
+    return temp
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    @front = (@front + 1) % @size
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    return @internal_array.size
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return @front == @back
   end
 
   def to_s
-    return @store.to_s
+    i = @front
+    print_array = []
+    while i < @back
+        if !@internal_array[i].nil?
+          print_array << @internal_array[i]
+        end
+      i += 1
+    end
+    return print_array.to_s
   end
 end

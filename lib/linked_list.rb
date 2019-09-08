@@ -6,7 +6,7 @@ class Node
   def initialize(value, next_node = nil, previous_node = nil)
     @data = value
     @next = next_node
-    @previous = previous_node
+#     @previous = previous_node
   end
 end
 
@@ -14,7 +14,7 @@ end
 class LinkedList
     def initialize
       @head = nil # keep the head private. Not accessible outside this class
-      @tail = nil
+#       @tail = nil
     end
 
     # method to add a new node with the specific data value in the linked list
@@ -25,21 +25,21 @@ class LinkedList
       new_node = Node.new(value)
       new_node.next = @head
 
-      @head.previous = new_node unless @head.nil?
+#       @head.previous = new_node unless @head.nil?
       @head = new_node
-      if @tail.nil?
-        @tail = @head
-      end
+#       if @tail.nil?
+#         @tail = @head
+#       end
+
     end
 
-    def remove_first()
-      raise ArgumentError, "Empty" if self.empty?
+    def remove_first
+         return nil if @head.nil?
+            temp = @head
+            @head = @head.next
+          return temp.data
 
-      value = @head.data
-      @head = @head.next
-      @head.previous = nil
-      return value
-    end
+     end
 
     def empty?
       return @head.nil?
@@ -138,26 +138,23 @@ class LinkedList
     # Time Complexity:  O(n) where n is the number of nodes
     # Space Complexity: O(1)
     def delete(value)
-      return if @head.nil?
       current = @head
-
-      if current.data == value
-        @head = current.next
-        @head.previous = nil unless @head.nil?
-        return
-      end
-
-      prev = current
-      until current.nil?
+      before = nil
+      while current
         if current.data == value
-          prev.next = current.next
-          current.next.previous = prev unless current.next.nil?
-          @tail = prev if @tail == current
-        else
-          prev = current
+          if !before && !current.next
+            @head = nil
+          elsif !before
+            @head = current.next
+          else
+            before.next = current.next
+          end
+          return "deleted"
         end
+        before = current
         current = current.next
       end
+      return nil
     end
 
     # method to reverse the singly linked list

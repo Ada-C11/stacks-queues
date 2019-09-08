@@ -36,7 +36,7 @@ class Queue
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return true if @store[@front].nil?
   end
 
   def to_s

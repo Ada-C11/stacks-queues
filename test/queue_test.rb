@@ -25,13 +25,11 @@ describe "Test Queue Implementation" do
   end
 
   it "starts the size of a Queue at 0" do
-    skip
     q = Queue.new
     q.empty?.must_equal true
   end
 
   it "removes something from the Queue" do
-    skip
     q = Queue.new
     q.enqueue(5)
     removed = q.dequeue

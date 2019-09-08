@@ -1,11 +1,11 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require_relative '../lib/problems'
-
+require 'minitest/skip_dsl'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe "Test wave 3 problems" do
-  describe "balanced" do
+  xdescribe "balanced" do
     it "Given balanced strings it should return true" do
       skip
       expect(balanced('(({}))')).must_equal true
@@ -30,7 +30,7 @@ describe "Test wave 3 problems" do
     end
   end
 
-  describe "postfix" do
+  xdescribe "postfix" do
     it "can add a 2 numbers together" do
       skip
       expect(evaluate_postfix("34+")).must_equal 7

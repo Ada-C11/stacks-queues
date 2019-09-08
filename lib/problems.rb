@@ -6,12 +6,7 @@ PAREN_PAIRS = {
   "(" => ")",
 }
 
-OPERATORS = {
-  "+" => 1,
-  "-" => 1,
-  "/" => 1,
-  "*" => 1,
-}
+OPERATORS = Set["+", "-", "/", "*"]
 
 def balanced(string)
   stack = Stack.new
@@ -33,7 +28,7 @@ def evaluate_postfix(postfix_expression)
   stack = Stack.new
 
   postfix_expression.each_char do |char|
-    if OPERATORS[char]
+    if OPERATORS.include?(char)
       num2 = stack.pop
       num1 = stack.pop
       result = num1.public_send char, num2

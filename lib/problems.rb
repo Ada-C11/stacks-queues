@@ -6,6 +6,13 @@ PAREN_PAIRS = {
   "(" => ")",
 }
 
+OPERATORS = {
+  "+" => 1,
+  "-" => 1,
+  "/" => 1,
+  "*" => 1,
+}
+
 def balanced(string)
   stack = Stack.new
 
@@ -24,5 +31,18 @@ def balanced(string)
 end
 
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  stack = Stack.new
+
+  postfix_expression.each_char do |char|
+    if OPERATORS[char]
+      num2 = stack.pop
+      num1 = stack.pop
+      result = "#{num1.to_i.public_send char, num2.to_i}"
+      stack.push(result)
+    else
+      stack.push(char)
+    end
+  end
+
+  return stack.pop.to_i
 end

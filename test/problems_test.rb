@@ -27,16 +27,14 @@ describe "Test wave 3 problems" do
   end
 
   describe "postfix" do
-    it "can add a 2 numbers together" do
-      skip
+    it "can add 2 numbers together" do
       expect(evaluate_postfix("34+")).must_equal 7
       expect(evaluate_postfix("34*")).must_equal 12
       expect(evaluate_postfix("34-")).must_equal -1
       expect(evaluate_postfix("34/")).must_equal 0
     end
 
-    it "can add a evaluate a more complicated expression" do
-      skip
+    it "can add and evaluate a more complicated expression" do
       expect(evaluate_postfix("34+2*")).must_equal 14
       expect(evaluate_postfix("34*2/")).must_equal 6
       expect(evaluate_postfix("34-1+")).must_equal 0

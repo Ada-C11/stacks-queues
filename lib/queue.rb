@@ -24,7 +24,12 @@ class Queue
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    if @store[@front]
+      temp = @store[@front]
+      @store[@front] = nil
+      @front += 1 % QUEUE_SIZE
+      return temp
+    end
   end
 
   def front
@@ -36,7 +41,7 @@ class Queue
   end
 
   def empty?
-    return true if @store[@front].nil?
+    return @store[@front].nil? ? true : false
   end
 
   def to_s

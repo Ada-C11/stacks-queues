@@ -38,7 +38,6 @@ describe "Test Queue Implementation" do
   end
 
   it "removes the right something (LIFO)" do
-    skip
     q = Queue.new
     q.enqueue(5)
     q.enqueue(3)
@@ -49,7 +48,6 @@ describe "Test Queue Implementation" do
   end
 
   it "properly adjusts the size with enqueueing and dequeueing" do
-    skip
     q = Queue.new
     q.empty?.must_equal true
     q.enqueue(-1)
@@ -61,7 +59,6 @@ describe "Test Queue Implementation" do
   end
 
   it "returns the front element in the Queue" do
-    skip
     q = Queue.new
     q.enqueue(40)
     q.enqueue(22)

@@ -22,8 +22,7 @@ def balanced(string)
     if PAREN_PAIRS[char]
       stack.push(char)
     else
-      opening_paren = stack.pop
-      return false if char != PAREN_PAIRS[opening_paren]
+      return false if char != PAREN_PAIRS[stack.pop]
     end
   end
 
@@ -37,12 +36,12 @@ def evaluate_postfix(postfix_expression)
     if OPERATORS[char]
       num2 = stack.pop
       num1 = stack.pop
-      result = "#{num1.to_i.public_send char, num2.to_i}"
+      result = num1.public_send char, num2
       stack.push(result)
     else
-      stack.push(char)
+      stack.push(char.to_i)
     end
   end
 
-  return stack.pop.to_i
+  return stack.pop
 end

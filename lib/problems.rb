@@ -16,12 +16,39 @@ def balanced(string)
     else
       return false if paren != stack_parens.pop
     end
-    puts stack_parens.to_s
   end
 
   return stack_parens.empty?
 end
 
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  operand_hash = {
+    "+" => true,
+    "-" => true,
+    "*" => true,
+    "/" => true,
+  }
+
+  stack_postfix = Stack.new
+  postfix_expression.each_char do |char|
+    if !operand_hash[char]
+      stack_postfix.push(char)
+    else
+      digit2 = stack_postfix.pop.to_i
+      digit1 = stack_postfix.pop.to_i
+
+      case char
+      when "+"
+        value = digit1 + digit2
+      when "-"
+        value = digit1 - digit2
+      when "*"
+        value = digit1 * digit2
+      when "/"
+        value = digit1 / digit2
+      end
+      stack_postfix.push(value)
+    end
+  end
+  return stack_postfix.pop
 end

@@ -46,8 +46,7 @@ class Queue
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
-    #Passes all tests without it, not sure what you are looking for here
+    return @store[@front..@rear].length
   end
 
   def empty?

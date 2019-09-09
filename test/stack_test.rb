@@ -4,21 +4,19 @@ require_relative '../lib/stack'
 require 'minitest/skip_dsl'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-xdescribe "Test Stack Implementation" do
+describe "Test Stack Implementation" do
   it "creates a Stack" do
     s = Stack.new
     s.class.must_equal Stack
   end
 
   it "pushes something onto a empty Stack" do
-    skip
     s = Stack.new
     s.push(10)
     s.to_s.must_equal "[10]"
   end
 
   it "pushes multiple somethings onto a Stack" do
-    skip
     s = Stack.new
     s.push(10)
     s.push(20)
@@ -27,13 +25,11 @@ xdescribe "Test Stack Implementation" do
   end
 
   it "starts the stack empty" do
-    skip
     s = Stack.new
     s.empty?.must_equal true
   end
 
   it "removes something from the stack" do
-    skip
     s = Stack.new
     s.push(5)
     removed = s.pop
@@ -42,7 +38,6 @@ xdescribe "Test Stack Implementation" do
   end
 
   it "removes the right something (LIFO)" do
-    skip
     s = Stack.new
     s.push(5)
     s.push(3)

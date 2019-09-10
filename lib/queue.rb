@@ -1,31 +1,44 @@
 class Queue
+  attr_writer :buffer_size, :ari
 
-  def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+  def initialize(buffer_size)
+    @ari_size = buffer_size + 1
+    @ari = Array.new(@ari_size)
+    @front = 0
+    @back = 0
   end
 
   def enqueue(element)
-    raise NotImplementedError, "Not yet implemented"
+    if @back == @front - 1
+      print "full"
+    else
+      @ari[@back] = element
+      @back += 1
+    end
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    if self.empty?
+      print "empty"
+    end
+    removed = @ari[@front]
+    @front += 1
+    return removed
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    return @back - @front
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return @front == @back
   end
 
   def to_s
-    return @store.to_s
+    return @ari[@front...@back].to_s
   end
 end

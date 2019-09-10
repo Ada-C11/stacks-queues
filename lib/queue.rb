@@ -25,7 +25,7 @@ class Queue
     removed = @store[@front]
     @store[@front] = nil
 
-    if (@front + 1) == @rear
+    if self.size == 0
       @front = @rear = -1
     else
       @front = (@front + 1) % QUEUE_SIZE

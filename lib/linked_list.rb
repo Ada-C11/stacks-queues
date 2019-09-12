@@ -33,12 +33,13 @@ class LinkedList
     end
 
     def remove_first()
-      raise ArgumentError, "Empty" if self.empty?
-
+      return if !@head
       value = @head.data
-      @head = @head.next
-      @head.previous = nil
-      return value
+      @head = @head.next 
+      if @head
+        @head.previous = nil
+      end
+      return value.data # why is "value" returning a node and not data, required .data to be called on it again to get value. 
     end
 
     def empty?

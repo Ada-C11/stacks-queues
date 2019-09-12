@@ -22,7 +22,12 @@ class Queue
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    dequeued = @store[@front]
+    @store[@front] = nil
+
+    self.size == 0 ? @front = @rear = -1 : @front = (@front + 1) % QUEUE_SIZE
+
+    return dequeued
   end
 
   def front

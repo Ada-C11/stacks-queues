@@ -39,7 +39,7 @@ class LinkedList
       if @head
         @head.previous = nil
       end
-      return value.data # why is "value" returning a node and not data, required .data to be called on it again to get value. 
+      return value
     end
 
     def empty?
@@ -248,7 +248,7 @@ class LinkedList
     # Space Complexity: O(1)
     def get_first
       return nil if @head.nil?
-      return @head.data
+      return @head.data 
     end
 
     # method that inserts a given value as a new last node in the linked list

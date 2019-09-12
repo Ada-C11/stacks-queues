@@ -72,16 +72,16 @@ describe "Test Queue Implementation" do
     q.enqueue(40)
     q.enqueue(22)
     q.enqueue(3)
-    expect(q.size).must_equal 3
+    q.dequeue
+    expect(q.size).must_equal 2
+  end
+
+  it "will peak at first element, not remove it " do 
+    q = Queue.new
     q.enqueue(40)
     q.enqueue(22)
     q.enqueue(3)
-    q.enqueue(40)
-    q.enqueue(22)
-    q.enqueue(3)
-    q.enqueue(40)
-    q.enqueue(22)
-    q.enqueue(3)
+    expect(q.front).must_equal 40
   end
 
   

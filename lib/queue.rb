@@ -7,7 +7,7 @@ class Queue
   end
 
   def enqueue(element)
-    @store.add_last(Node.new(element))
+    @store.add_last(element)
     @size += 1
     return @store
   end

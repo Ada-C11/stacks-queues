@@ -6,7 +6,7 @@ class Stack
   end
 
   def push(element)
-    return @store.add_first(Node.new(element))
+    return @store.add_first(element)
   end
 
   def pop

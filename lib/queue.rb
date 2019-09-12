@@ -1,28 +1,28 @@
-class Queue
+require_relative "./linked_list.rb"
 
+class Queue
   def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+    @store = LinkedList.new
   end
 
   def enqueue(element)
-    raise NotImplementedError, "Not yet implemented"
+    @store.add_last(element)
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    @store.remove_first
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return @store.head
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    return @store.length
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return @store.empty?
   end
 
   def to_s

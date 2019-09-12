@@ -21,8 +21,21 @@ def balanced(string)
   end
 
   return stack.empty?
+
+  # cannot do this either
+  # if stack.empty?
+  #   return
+  # end
+
+  #undefined method `length'
+  # if stack.length == 0
+  #   return true
+  # end
+
 end
 
+  # open_paren = []
+  # close_parens = []
   # PUSH PARENS INTO ARRAYS
   # string.each_char do |element|
   #   if element == "(" || element == "{" || element == "["

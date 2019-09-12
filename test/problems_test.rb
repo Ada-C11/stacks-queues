@@ -21,6 +21,7 @@ describe "Test wave 3 problems" do
       expect(balanced('(()')).must_equal false
       expect(balanced('(()}')).must_equal false
       expect(balanced('([]]')).must_equal false
+      expect(balanced('({[}]')).must_equal false
     end
 
     it "also works for {} and []" do

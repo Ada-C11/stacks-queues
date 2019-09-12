@@ -169,12 +169,13 @@ class LinkedList
       prev = nil
       current = @head
       until current.nil?
+        # placeholder for node #2
         temp = current.next
+        # next node is node #-1
         current.next = prev
         prev = current
         current = temp
         prev.previous = current
-
       end
 
       @head = prev
@@ -301,6 +302,7 @@ class LinkedList
       end
 
       until current.nil?
+        # until current.next == nil, will run into nil > value error otherwise, or until current == @tail
         if current.data <= value && current.next.data > value
           temp = current.next
           current.next = new_node
@@ -311,6 +313,8 @@ class LinkedList
         end
         current = current.next
       end
+
+      # add node as tail 
     end
 
     # Helper method for tests

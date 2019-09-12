@@ -3,18 +3,25 @@ require_relative "./linked_list.rb"
 class Stack
   def initialize
     @store = LinkedList.new
+    @length = 0
   end
 
   def push(element)
+    @length += 1
     return @store.add_first(element)
   end
 
   def pop
+    @length -= 1
     return @store.remove_first()
   end
 
   def empty?
-    return @store.empty?
+    return @length == 0
+  end
+
+  def peak
+    return @store.get_first()
   end
 
   def to_s

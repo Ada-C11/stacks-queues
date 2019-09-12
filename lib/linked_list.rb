@@ -33,11 +33,12 @@ class LinkedList
     end
 
     def remove_first()
-      raise ArgumentError, "Empty" if self.empty?
-
+      return if !@head
       value = @head.data
-      @head = @head.next
-      @head.previous = nil
+      @head = @head.next 
+      if @head
+        @head.previous = nil
+      end
       return value
     end
 
@@ -247,7 +248,7 @@ class LinkedList
     # Space Complexity: O(1)
     def get_first
       return nil if @head.nil?
-      return @head.data
+      return @head.data 
     end
 
     # method that inserts a given value as a new last node in the linked list

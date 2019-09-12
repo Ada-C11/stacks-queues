@@ -38,6 +38,7 @@ class Queue
   end
 
   def to_s
-    return @store.to_s
+    store = @store.select { |item| item != nil }
+    return store.to_s
   end
 end

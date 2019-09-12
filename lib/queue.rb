@@ -26,19 +26,19 @@ class Queue
   end
 
   def dequeue
-    if @front == -1
+    if @front == -1 # Q is empty
       return
 
-    elsif @front == @rear
-      temp_node = @store[@front]
-      @front = -1
-      @rear = -1
+    elsif @front == @rear #  There's only 1 element
+      temp_node = @store[@front] # "remove" the element
+      @front = -1 # points to the empty bucket
+      @rear = -1 # points to the empty bucket
       return temp_node
 
-    else
-      temp_node = @store[@front]
-      @store[@front] = nil
-      @front = (@front + 1) % QUEUE_SIZE
+    else # there's more than 1 element in the array
+      temp_node = @store[@front] # "remove" the element
+      @store[@front] = nil # store is now empty
+      @front = (@front + 1) % QUEUE_SIZE # wrap front around array
       return temp_node
     end
   end
@@ -65,7 +65,8 @@ class Queue
 
   def to_s
     array = []
-    @store.each do |element|
+    @store.each_with_index do |element, i|
+      next if i < @front
       break if element.nil?
 
       array << element

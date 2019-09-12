@@ -2,7 +2,7 @@ require_relative "./linked_list.rb"
 
 class Stack
   def initialize
-    @store = LinkedList.new()
+    @store = LinkedList.new
   end
 
   def push(element)

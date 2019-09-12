@@ -59,7 +59,7 @@ class Queue
     i = @front + 1
     until i == @rear
       array_as_string = array_as_string + ", #{@store[i]}"
-      i += 1
+      i += 1 % QUEUE_SIZE
     end
 
     array_as_string = array_as_string + "]"

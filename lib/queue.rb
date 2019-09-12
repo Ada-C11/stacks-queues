@@ -13,7 +13,7 @@ class Queue
       @front = 0
       @store[@front] = element
     elsif @front == @rear
-      raise Error, "Q is full"
+      raise Error, "Q FULL"
     else # not empty
       new_rear = (@rear + 1) % QUEUE_SIZE
       @store[@rear] = element

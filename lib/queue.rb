@@ -30,7 +30,8 @@ class Queue
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    store = @store.select { |item| item != nil }
+    return store.length
   end
 
   def empty?

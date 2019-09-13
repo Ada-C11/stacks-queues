@@ -29,5 +29,30 @@ def balanced(string)
 end
 
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  num_stack = Stack.new
+  postfix_expression.each_char do |c|
+    case c
+    # when it's an operand, pop both operands out, perform operation, push back to stack
+    when "+"
+      num2 = num_stack.pop
+      num1 = num_stack.pop
+      num_stack.push(num1 + num2)
+    when "-"
+      num2 = num_stack.pop
+      num1 = num_stack.pop
+      num_stack.push(num1 - num2)
+    when "*"
+      num2 = num_stack.pop
+      num1 = num_stack.pop
+      num_stack.push(num1 * num2)
+    when "/"
+      num2 = num_stack.pop
+      num1 = num_stack.pop
+      num_stack.push(num1 / num2)
+    else
+      # push to stack
+      num_stack.push(c.to_i)
+    end
+  end
+  return num_stack.pop
 end

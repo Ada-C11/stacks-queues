@@ -1,31 +1,49 @@
 class Queue
 
-  def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+  class BufferFullError < StandardError; end
+
+  def initialize(capacity=10)
+    @capacity = capacity
+    @store = Array.new(capacity)
+    @head = @tail = 0
   end
 
   def enqueue(element)
-    raise NotImplementedError, "Not yet implemented"
+    raise BufferFullError if (@tail == @head && !empty?) 
+    @store[@tail] = element
+    @tail = (@tail + 1) % @capacity
+    
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    return if !@head
+    value = @store[@head]
+    @store[@head] = nil 
+    @head = (@head + 1) % @capacity
+    return value
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return @store[@head]
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    if (@head == @tail && !empty?)
+      return @capacity 
+    elsif @head == @tail
+      return 0
+    elsif @tail > @head
+      return @tail - @head
+    elsif @tail < @head
+      return @capacity - (@head - @tail)
+    end
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    @store[@head] ? (return false) : (return true)
   end
 
   def to_s
-    return @store.to_s
+    return @store.select{|value| value}.to_s
   end
 end

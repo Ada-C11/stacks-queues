@@ -11,14 +11,12 @@ describe "Test Queue Implementation" do
   end
 
   it "adds something to an empty Queue" do
-    skip
     q = Queue.new
     q.enqueue(10)
     q.to_s.must_equal "[10]"
   end
 
   it "adds multiple somethings to a Queue" do
-    skip
     q = Queue.new
     q.enqueue(10)
     q.enqueue(20)
@@ -27,13 +25,11 @@ describe "Test Queue Implementation" do
   end
 
   it "starts the size of a Queue at 0" do
-    skip
     q = Queue.new
     q.empty?.must_equal true
   end
 
   it "removes something from the Queue" do
-    skip
     q = Queue.new
     q.enqueue(5)
     removed = q.dequeue
@@ -42,7 +38,6 @@ describe "Test Queue Implementation" do
   end
 
   it "removes the right something (LIFO)" do
-    skip
     q = Queue.new
     q.enqueue(5)
     q.enqueue(3)
@@ -53,24 +48,33 @@ describe "Test Queue Implementation" do
   end
 
   it "properly adjusts the size with enqueueing and dequeueing" do
-    skip
     q = Queue.new
     q.empty?.must_equal true
+    q.size.must_equal 0
     q.enqueue(-1)
     q.enqueue(-60)
     q.empty?.must_equal false
+    q.size.must_equal 2
     q.dequeue
     q.dequeue
     q.empty?.must_equal true
+    q.size.must_equal 0
   end
 
   it "returns the front element in the Queue" do
-    skip
     q = Queue.new
     q.enqueue(40)
     q.enqueue(22)
     q.enqueue(3)
     q.dequeue
+    expect(q.front).must_equal 22
     expect(q.dequeue).must_equal 22
+  end
+
+  it "raises an error if buffer is full" do
+    q = Queue.new(2)
+    q.enqueue(40)
+    q.enqueue(22)
+    expect{q.enqueue(3)}.must_raise
   end
 end

@@ -28,11 +28,19 @@ class Queue
   end
 
   def size
-    @store.count{|value| value}
+    if (@head == @tail && !empty?)
+      return @capacity 
+    elsif @head == @tail
+      return 0
+    elsif @tail > @head
+      return @tail - @head
+    elsif @tail < @head
+      return @capacity - (@head - @tail)
+    end
   end
 
   def empty?
-    @store.select{|value| value}.empty?
+    @store[@head] ? (return false) : (return true)
   end
 
   def to_s

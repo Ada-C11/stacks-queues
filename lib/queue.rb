@@ -9,7 +9,7 @@ class Queue
   end
 
   def enqueue(element)
-    raise BufferFullError if (@tail  == @head) || (@tail + 1 == @capacity && @head == 0)
+    raise BufferFullError if (@tail == @head && !empty?) 
     @store[@tail] = element
     @tail = (@tail + 1) % @capacity
     

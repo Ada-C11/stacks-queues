@@ -70,4 +70,11 @@ describe "Test Queue Implementation" do
     expect(q.front).must_equal 22
     expect(q.dequeue).must_equal 22
   end
+
+  it "raises an error if buffer is full" do
+    q = Queue.new(2)
+    q.enqueue(40)
+    q.enqueue(22)
+    expect{q.enqueue(3)}.must_raise
+  end
 end

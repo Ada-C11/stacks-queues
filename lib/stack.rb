@@ -14,6 +14,14 @@ class Stack
     return item
   end
 
+  def get_last
+    return @store.get_last()
+  end
+
+  def length
+    return @store.length
+  end
+
   def empty?
     return @store.empty?
   end

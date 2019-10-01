@@ -1,27 +1,40 @@
 class Queue
 
   def initialize
-    @store = Array.new(QUEUE_SIZE)
+    @store = Array.new(10)
     @front = @rear = -1
+    @size = 0
+    @capacity = 10
   end
 
   def enqueue(element)
-    if @front = -1 #Q is empty
-      @rear = 1
-      @front = 0
-      @store[@front] = element
-    elsif @front == @rear
-      raise Error, "Q FULL"
-    else #not empty
-      #this is divisible by the Queue size because when rear reaches the end of the array then we want rear to wrap around and be at the beg of the array again (if the a.lenght is 10 , rear is at 9 then when we move rear + 1 (rear will be out range and thus (9+1)/10 = 0 will move rear back to 0)
-      new_front = (@front + 1) % QUEUE_SIZE
+    if @size == @capacity
+    return
+    else
+      if @front == -1
+        @front = 0
+      end
+      @rear = (@rear + 1) % @capacity
       @store[@rear] = element
-      @rear = new_rear
+      @size += 1
     end
   end
 
-  def dequeue
-    raise NotImplementedError, "Not yet implemented"
+  def dequeue 
+    if empty?
+      return
+    elsif @front == @rear
+      removed_element = @store[@front]
+      @front = -1
+      @rear = -1
+      @size -= 1
+      return removed_element
+    else
+      removed_element = @store[@front]
+      @front = (@front + 1) % @capacity
+      @size -= 1
+      return removed_element
+    end
   end
 
   def front
@@ -33,10 +46,21 @@ class Queue
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    if @size == 0
+      return true
+    else
+      return false
+    end
   end
 
   def to_s
-    return @store.to_s
+    if @size == 0
+      return [].to_s
+    elsif @front <= @rear
+      return @store[@front..@rear].to_s
+    else
+      new_array = @store[@front .. @capacity -1] + @store[0..@rear]
+      return new_array.to_s
+    end
   end
 end
